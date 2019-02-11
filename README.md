@@ -23,7 +23,7 @@ Http code: 200
 
 |Field|Data type|Description
 |-|-|-|
-|data|List<MenuNode>| List containing the menu tree
+|data|List\<MenuNode>| List containing the menu tree
 
 ### Product endpoint
 ***
