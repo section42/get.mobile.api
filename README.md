@@ -38,7 +38,7 @@ Http code: 200
 
 |Field|Data type|Description
 |-|-|-|
-|data|List<MenuProduct>| List containing the menu tree
+|data|List\<MenuProduct>| List containing the menu tree
 
 ### Configuration endpoint
 ****
@@ -68,7 +68,7 @@ Http code: 200
 
 |Field|Data type|Description
 |-|-|-|
-|data|List<FieldModel>| The list of available fields
+|data|List\<FieldModel>| The list of available fields
 
 ### Image endpoint
 ****
@@ -135,7 +135,7 @@ Request:
 |Field|Data type|Description
 |-|-|-|
 |paymentType|String| the uuid of the payment type to use, can be found via the status endpoint
-|cartItems|List<CartItem>| the items which are to be sold to a customer
+|cartItems|List\<CartItem>| the items which are to be sold to a customer
 
 
 Success response:
@@ -190,7 +190,7 @@ Request:
 |pureGiftCredits|String|the amount of pureGift credits to put on the nfc tag
 |disableTagPawn|boolean| set true if no tag pawn should be charged
 |disableActivationFee|boolean | set true if no activation fee should be charged
-|fields|List<FieldModel>| A list of fields which the nfc tag should receive
+|fields|List\<FieldModel>| A list of fields which the nfc tag should receive
 |isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true).
 
 Success response:
@@ -227,7 +227,6 @@ The Api then tries to notify its listeners about the following event types:
 
 1. Detected nfc tag: When a new nfc tag was read.
 2. Job update: When a scheduled job has a status update.
-3. 
 
 The basic structure of any transaction update is as follows:
 
@@ -278,7 +277,7 @@ The following list contains the possible error codes and short explanations.
 |name|String| The name of the product or category
 |bgColor|String|hex color code of the background
 |thumbnailRef|ImageRef| Image reference for the thumbnail picture associated with the menu node
-|children|List<MenuNode>|List of child nodes
+|children|List\<MenuNode>|List of child nodes
 
 ## MenuProduct
 |Field|Data type|Description
@@ -290,7 +289,7 @@ The following list contains the possible error codes and short explanations.
 |priceInCreditsFormatted|String|The price of a product in system credits with the credit symbol. For displaying the credit value. Decimal separator may be location dependent, e.g. "3,20T"
 |priceInCurrency|String|The price of a product in real world currency. Always formatted with a decimal point, e.g. "6.4"
 |priceInCurrencyFormatted|String|the price of a product in real world currency with the currency symbol. For displaying the currency value. Decimal separator may be location dependent, e.g. "6,40€"
-|genericData|List<Generic>|List of generic functions associated with this menu node
+|genericData|List\<Generic>|List of generic functions associated with this menu node
 
 ## ImageRef
 |Field|Data type|Description
@@ -302,7 +301,7 @@ The following list contains the possible error codes and short explanations.
 |Field|Data type|Description
 |-|-|-|
 |fullString|String| the complete generic as String, e.g. "simpleGeneric(Hello,World)"
-|arg|List<String>| List containing all arguments of the generic, e.g. ["Hello","World"]
+|arg|List\<String>| List containing all arguments of the generic, e.g. ["Hello","World"]
 |functionName|String| the name of the generic function, e.g. "simlpeGeneric"
 |paramString|String| the generic's parameters as a single String, e.g. "Hello,World"
 
@@ -312,7 +311,7 @@ The following list contains the possible error codes and short explanations.
 |creditSymbol|String| The symbol used for representing credits
 |currencySymbol|String| The symbol used for representing real world currency
 |deviceId|String| The short id of the device,r epresented as a four digit String, e.g. "ACZK"
-|paymentTypes| List<PaymentType>| A list of payment types enabled for this device
+|paymentTypes| List\<PaymentType>| A list of payment types enabled for this device
 |projectName|String| the name of the current project
 |siteName|String| the name of the active site
 |unitName|String| the name of the unit the active site belongs to
@@ -349,7 +348,7 @@ The following list contains the possible error codes and short explanations.
 |manager|boolean | true, if the nfc tag has manager access
 |master|boolean|true, if the nfc tag has master access
 |admin|boolean|true, if the nfc tag  has admin access
-|fields|List<FieldModel>| a list of fields
+|fields|List\<FieldModel>| a list of fields
 
 
 ## CartItem
