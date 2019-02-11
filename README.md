@@ -19,6 +19,7 @@ Method: GET
 Auth: Basic Authentication
 
 Success Response:
+Http code: 200
 
 |Field|Data type|Description
 |-|-|-|
@@ -33,6 +34,8 @@ Method: GET
 Auth: Basic Authentication
 
 Success Response:
+Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|List<MenuProduct>| List containing the menu tree
@@ -47,6 +50,7 @@ Auth: Basic Authentication
 
 Success Response:
 Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|DeviceConfig| Device status object
@@ -61,6 +65,7 @@ Auth: Basic Authentication
 
 Success Response:
 Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|List<FieldModel>| The list of available fields
@@ -87,6 +92,7 @@ Auth: Basic Authentication
 
 Success response:
 Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|NfcTag| The content of a nfc tag
@@ -99,14 +105,16 @@ URL: /api/events/v4
 Method: POST
 Auth: Basic Authentication
 Request Body:
+
 |Field|Data type|Description
 |-|-|-|
 |url|String| The url where updates will be sent to, e.g.: http://192.168.0.1:8080/updates
 
 
 Variants:
-| Variant                     | Explanation  |
-| :-------------                |:-------------|
+
+| Variant| Explanation  |
+| :------------- |:-------------|
 | /api/v4/events/register     | registers the listener associated with the url provided in the body |
 | /api/v4/events/unregister   | unregisters the listener associated with the url provided in the body |
 
@@ -123,6 +131,7 @@ Auth: Basic Authentication
 Through this endpoint a shopping cart can be handed to the API which then tries to sell its content to the next nfc chip. Every request has to have a valid uuid in the header as jobId. Through this uuid the request can then be identified at a later point in time.
 
 Request:
+
 |Field|Data type|Description
 |-|-|-|
 |paymentType|String| the uuid of the payment type to use, can be found via the status endpoint
@@ -131,6 +140,7 @@ Request:
 
 Success response:
 Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobInfo| the object containing information about where information about the job can be found
@@ -142,6 +152,7 @@ Returns the status of a job with the specified jobId
 
 Success response:
 Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobStatus| An object containing information about the specific job
@@ -164,6 +175,7 @@ Auth: Basic Authentication
 Accreditation information sent to this endpoint will be written on the next nfc tag available.
 
 Request:
+
 |Field|Data type|Description
 |-|-|-|
 |workerId|String| a random uuid to identify the worker
@@ -183,6 +195,7 @@ Request:
 
 Success response:
 Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobInfo| the object containing information about where information about the job can be found
@@ -194,6 +207,7 @@ Returns the status of a job with the specified jobId
 
 Success response:
 Http code: 200
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobStatus| An object containing information about the specific job
@@ -216,6 +230,7 @@ The Api then tries to notify its listeners about the following event types:
 3. 
 
 The basic structure of any transaction update is as follows:
+
 |Field|Data type|Description
 |-|-|-|
 |date|String| the date when the request was processed
@@ -235,6 +250,7 @@ If authorization fails, the API will respond with a simple 401 (Unauthorized) HT
 }
 ```
 The following list contains the possible error codes and short explanations.
+
 | Code  | Message
 |:-|:-
 | **BadRequest** | The request is invalid,
