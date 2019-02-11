@@ -21,6 +21,7 @@ Auth: Basic Authentication
 Success Response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|List\<MenuNode>| List containing the menu tree
@@ -36,6 +37,7 @@ Auth: Basic Authentication
 Success Response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|List\<MenuProduct>| List containing the menu tree
@@ -51,6 +53,7 @@ Auth: Basic Authentication
 Success Response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|DeviceConfig| Device status object
@@ -66,6 +69,7 @@ Auth: Basic Authentication
 Success Response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|List\<FieldModel>| The list of available fields
@@ -93,6 +97,7 @@ Auth: Basic Authentication
 Success response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|NfcTag| The content of a nfc tag
@@ -141,6 +146,7 @@ Request:
 Success response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobInfo| the object containing information about where information about the job can be found
@@ -153,6 +159,7 @@ Returns the status of a job with the specified jobId
 Success response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobStatus| An object containing information about the specific job
@@ -196,6 +203,7 @@ Request:
 Success response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobInfo| the object containing information about where information about the job can be found
@@ -208,6 +216,7 @@ Returns the status of a job with the specified jobId
 Success response:  
 Http code: 200  
 Response Body:  
+
 |Field|Data type|Description
 |-|-|-|
 |data|JobStatus| An object containing information about the specific job
