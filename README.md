@@ -14,7 +14,7 @@ Http/ Https
 ***
 The menu endpoint provides information about the structure of the product menu, i.e. how items are nested in the menu.
 
-URL: /api/menu/v4
+URL: /api/menu/v4  
 Method: GET
 Auth: Basic Authentication
 
