@@ -24,7 +24,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|List\<MenuNode [MenuNode][]>| List containing the menu tree
+|data|List\<MenuNode>| List containing the menu tree
 
 ### Product endpoint
 ***
