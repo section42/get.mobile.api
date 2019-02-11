@@ -19,6 +19,7 @@ Method: GET
 Auth: Basic Authentication
 
 Success Response:
+
 |Field|Data type|Description
 |-|-|-|
 |data|List<MenuNode>| List containing the menu tree
