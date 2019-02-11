@@ -15,11 +15,11 @@ Http/ Https
 The menu endpoint provides information about the structure of the product menu, i.e. how items are nested in the menu.
 
 URL: /api/menu/v4  
-Method: GET
+Method: GET  
 Auth: Basic Authentication
 
-Success Response:
-Http code: 200
+Success Response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
@@ -29,12 +29,12 @@ Http code: 200
 ***
 The product endpoint provides information about the products available via the api. 
 
-URL: /api/product/v4
-Method: GET
-Auth: Basic Authentication
+URL: /api/product/v4  
+Method: GET  
+Auth: Basic Authentication  
 
-Success Response:
-Http code: 200
+Success Response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
@@ -44,12 +44,12 @@ Http code: 200
 ****
 The configuration endpoint provides information about the device and the current configuration.
 
-URL: /api/config/v4
-Method: GET
-Auth: Basic Authentication
+URL: /api/config/v4  
+Method: GET  
+Auth: Basic Authentication  
 
-Success Response:
-Http code: 200
+Success Response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
@@ -59,12 +59,12 @@ Http code: 200
 ****
 The field endpoint returns a list of fields confogured for the project.
 
-URL: /api/field/v4
-Method: GET
-Auth: Basic Authentication
+URL: /api/field/v4  
+Method: GET  
+Auth: Basic Authentication  
 
-Success Response:
-Http code: 200
+Success Response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
@@ -74,24 +74,24 @@ Http code: 200
 ****
 This endpoint returns images associated with products in the devices menu. 
 
-URL: /api/image/v4/{$image_id}
-Method: GET
-Auth: Basic Authentication
+URL: /api/image/v4/{$image_id}  
+Method: GET  
+Auth: Basic Authentication  
 
-Success response:
-Http code: 200
-the respsective image
+Success response:  
+Http code: 200  
+the respsective image  
 
 ### TagInfo Endpoint
 ****
 This endpoint returns the content of an nfc tag which is present at the reader when the request is received. If no nfc tag is present, an error code is returned.
 
-URL: /api/tag_info/v4
-Method: GET
-Auth: Basic Authentication
+URL: /api/tag_info/v4  
+Method: GET  
+Auth: Basic Authentication  
 
-Success response:
-Http code: 200
+Success response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
@@ -101,36 +101,36 @@ Http code: 200
 ****
 Allows a client to register/ unregister for push notifications of Api events. If the Api fails to make a call to the provided endpoint, the listener is dropped. At most 10 listeners can listen for events and therefore any new listener will replace the oldest listener (FIFO).
 
-URL: /api/events/v4
-Method: POST
-Auth: Basic Authentication
-Request Body:
+URL: /api/events/v4  
+Method: POST  
+Auth: Basic Authentication  
+Request Body:  
 
 |Field|Data type|Description
 |-|-|-|
 |url|String| The url where updates will be sent to, e.g.: http://192.168.0.1:8080/updates
 
 
-Variants:
+Variants:  
 
 | Variant| Explanation  |
 | :------------- |:-------------|
 | /api/v4/events/register     | registers the listener associated with the url provided in the body |
 | /api/v4/events/unregister   | unregisters the listener associated with the url provided in the body |
 
-Success response:
-Http code: 204
+Success response:  
+Http code: 204  
 
 ### Purchase Endpoint
 ****
 This endpoint is used to start a purchase and get information about the status of purchase requests
 
-URL: /api/purchase/v4/{$jobId}/async
-Method: POST
-Auth: Basic Authentication
-Through this endpoint a shopping cart can be handed to the API which then tries to sell its content to the next nfc chip. Every request has to have a valid uuid in the header as jobId. Through this uuid the request can then be identified at a later point in time.
+URL: /api/purchase/v4/{$jobId}/async  
+Method: POST  
+Auth: Basic Authentication  
+Through this endpoint a shopping cart can be handed to the API which then tries to sell its content to the next nfc chip. Every request has to have a valid uuid in the header as jobId. Through this uuid the request can then be identified at a later point in time.  
 
-Request:
+Request:  
 
 |Field|Data type|Description
 |-|-|-|
@@ -138,43 +138,43 @@ Request:
 |cartItems|List\<CartItem>| the items which are to be sold to a customer
 
 
-Success response:
-Http code: 200
+Success response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
 |data|JobInfo| the object containing information about where information about the job can be found
 
-URL: /api/purchase/v4/{$jobId}/status
-Method: GET
-Auth: Basic Authentication
-Returns the status of a job with the specified jobId
+URL: /api/purchase/v4/{$jobId}/status  
+Method: GET  
+Auth: Basic Authentication  
+Returns the status of a job with the specified jobId  
 
-Success response:
-Http code: 200
+Success response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
 |data|JobStatus| An object containing information about the specific job
 
-URL: /api/purchase/v4/{$jobId}/cancel
-Method: GET
-Auth: Basic Authentication
-Attempts to cancel the purchase job identified by the provided jobId
+URL: /api/purchase/v4/{$jobId}/cancel  
+Method: GET  
+Auth: Basic Authentication  
+Attempts to cancel the purchase job identified by the provided jobId  
 
-Success response:
-Http code: 204
+Success response:  
+Http code: 204  
 
 ### Accreditation Endpoint
 ****
-This endpoint is used to accredit nfc tags.
+This endpoint is used to accredit nfc tags.  
 
-URL: /api/accredit/v4/{$jobId}/async
-Method: POST
-Auth: Basic Authentication
-Accreditation information sent to this endpoint will be written on the next nfc tag available.
+URL: /api/accredit/v4/{$jobId}/async  
+Method: POST  
+Auth: Basic Authentication  
+Accreditation information sent to this endpoint will be written on the next nfc tag available.  
 
-Request:
+Request:  
 
 |Field|Data type|Description
 |-|-|-|
@@ -193,32 +193,32 @@ Request:
 |fields|List\<FieldModel>| A list of fields which the nfc tag should receive
 |isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true).
 
-Success response:
-Http code: 200
+Success response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
 |data|JobInfo| the object containing information about where information about the job can be found
 
-URL: /api/accredit/v4/{$jobId}/status
-Method: GET
-Auth: Basic Authentication
-Returns the status of a job with the specified jobId
+URL: /api/accredit/v4/{$jobId}/status  
+Method: GET  
+Auth: Basic Authentication  
+Returns the status of a job with the specified jobId  
 
-Success response:
-Http code: 200
+Success response:  
+Http code: 200  
 
 |Field|Data type|Description
 |-|-|-|
 |data|JobStatus| An object containing information about the specific job
 
-URL: /api/accredit/v4/{$jobId}/cancel
-Method: GET
-Auth: Basic Authentication
-Attempts to cancel the accreditation job identified by the provided jobId
+URL: /api/accredit/v4/{$jobId}/cancel  
+Method: GET  
+Auth: Basic Authentication  
+Attempts to cancel the accreditation job identified by the provided jobId  
 
-Success response:
-Http code: 204
+Success response:  
+Http code: 204  
 
 ## Transaction Updates
 ***
