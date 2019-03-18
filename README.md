@@ -32,7 +32,7 @@ The product endpoint provides information about the products available via the a
 
 URL: /api/product/v4  
 Method: GET  
-Auth: Basic Authentication  
+Auth: <a name="wololo">Basic Authentication</a>  
 
 Success Response:  
 Http code: 200  
@@ -64,7 +64,7 @@ The field endpoint returns a list of fields confogured for the project.
 
 URL: /api/field/v4  
 Method: GET  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#wololo)
 
 Success Response:  
 Http code: 200  
