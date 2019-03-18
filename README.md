@@ -342,7 +342,7 @@ The following list contains the possible error codes and short explanations.
 |name|String| The name of the payment type, e.g. "Cashless Card"
 |type|String| one of <Cashless, Other>
 
-## <a name="nfcTag>NfcTag</a>
+## <a name="nfcTag">NfcTag</a>
 |Field|Data type|Description
 |-|-|-|
 |normalCredits|String| the available amount of normal credits on the nfc chip
