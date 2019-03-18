@@ -90,7 +90,7 @@ the respsective image
 ****
 This endpoint returns the content of an nfc tag which is present at the reader when the request is received. If no nfc tag is present, an error code is returned.
 
-URL: /api/tag_info/v4  
+URL: /api/tag-info/v4  
 Method: GET  
 Auth: Basic Authentication  
 
