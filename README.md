@@ -40,7 +40,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|List\<MenuProduct>| List containing the menu tree
+|data|List\<MenuProduct>| List containing all products
 
 ### Configuration endpoint
 ****
