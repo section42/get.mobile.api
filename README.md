@@ -32,7 +32,7 @@ The product endpoint provides information about the products available via the a
 
 URL: /api/product/v4  
 Method: GET  
-Auth: Basic Authentication 
+Auth: [Basic Authentication](#authorization)
 
 Success Response:  
 Http code: 200  
@@ -48,7 +48,7 @@ The configuration endpoint provides information about the device and the current
 
 URL: /api/config/v4  
 Method: GET  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization) 
 
 Success Response:  
 Http code: 200  
@@ -64,7 +64,7 @@ The field endpoint returns a list of fields confogured for the project.
 
 URL: /api/field/v4  
 Method: GET  
-Auth: [Basic Authentication](#wololo)
+Auth: [Basic Authentication](#authorization)
 
 Success Response:  
 Http code: 200  
@@ -80,7 +80,7 @@ This endpoint returns images associated with products in the devices menu.
 
 URL: /api/image/v4/{$image_id}  
 Method: GET  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization) 
 
 Success response:  
 Http code: 200  
@@ -92,7 +92,7 @@ This endpoint returns the content of an nfc tag which is present at the reader w
 
 URL: /api/tag-info/v4  
 Method: GET  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization)
 
 Success response:  
 Http code: 200  
@@ -108,7 +108,7 @@ Allows a client to register/ unregister for push notifications of Api events. At
 
 URL: /api/events/v4  
 Method: POST  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization)  
 Request Body:  
 
 |Field|Data type|Description
@@ -132,7 +132,7 @@ This endpoint is used to start a purchase and get information about the status o
 
 URL: /api/purchase/v4/{$jobId}/async  
 Method: POST  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization)  
 Through this endpoint a shopping cart can be handed to the API which then tries to sell its content to the next nfc chip. Every request has to have a valid uuid in the header as jobId. Through this uuid the request can then be identified at a later point in time.  
 
 Request:  
@@ -140,7 +140,7 @@ Request:
 |Field|Data type|Description
 |-|-|-|
 |paymentType|String| the uuid of the payment type to use, can be found via the status endpoint
-|cartItems|List\<CartItem>| the items which are to be sold to a customer
+|cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer
 
 
 Success response:  
@@ -166,7 +166,7 @@ Response Body:
 
 URL: /api/purchase/v4/{$jobId}/cancel  
 Method: GET  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization)
 Attempts to cancel the purchase job identified by the provided jobId  
 
 Success response:  
@@ -178,7 +178,7 @@ This endpoint is used to accredit nfc tags.
 
 URL: /api/accredit/v4/{$jobId}/async  
 Method: POST  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization) 
 Accreditation information sent to this endpoint will be written on the next nfc tag available.  
 
 Request:  
@@ -210,7 +210,7 @@ Response Body:
 
 URL: /api/accredit/v4/{$jobId}/status  
 Method: GET  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization) 
 Returns the status of a job with the specified jobId  
 
 Success response:  
@@ -223,7 +223,7 @@ Response Body:
 
 URL: /api/accredit/v4/{$jobId}/cancel  
 Method: GET  
-Auth: Basic Authentication  
+Auth: [Basic Authentication](#authorization) 
 Attempts to cancel the accreditation job identified by the provided jobId  
 
 Success response:  
@@ -360,7 +360,7 @@ The following list contains the possible error codes and short explanations.
 |fields|List\<FieldModel>| a list of fields
 
 
-## CartItem
+## <a name="cartItem">CartItem</a>
 |Field|Data type|Description
 |-|-|-|
 |count|int| the quantity of the item
