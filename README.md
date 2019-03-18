@@ -3,7 +3,7 @@
 # GET mobile API v4
 
 ## Authorization
-Basic Authorization
+[Basic Authorization](https://swagger.io/docs/specification/authentication/basic-authentication/)
 
 ## Supported Protocols
 Http/ Https
