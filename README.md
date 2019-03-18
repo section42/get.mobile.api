@@ -104,7 +104,7 @@ Response Body:
 
 ### Events Endpoint
 ****
-Allows a client to register/ unregister for push notifications of Api events. If the Api fails to make a call to the provided endpoint, the listener is dropped. At most 10 listeners can listen for events and therefore any new listener will replace the oldest listener (FIFO).
+Allows a client to register/ unregister for push notifications of Api events. At most 10 listeners can listen for events and therefore any new listener will replace the oldest listener (FIFO).
 
 URL: /api/events/v4  
 Method: POST  
