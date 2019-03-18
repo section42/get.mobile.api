@@ -2,7 +2,7 @@
 
 # GET mobile API v4
 
-## Authorization
+## <a name="authorization">Authorization</a>
 [Basic Authorization](https://swagger.io/docs/specification/authentication/basic-authentication/)
 
 ## Supported Protocols
@@ -16,7 +16,7 @@ The menu endpoint provides information about the structure of the product menu, 
 
 URL: /api/menu/v4  
 Method: GET  
-Auth: Basic Authentication
+Auth: [Basic Authentication](#authorization)
 
 Success Response:  
 Http code: 200  
@@ -32,7 +32,7 @@ The product endpoint provides information about the products available via the a
 
 URL: /api/product/v4  
 Method: GET  
-Auth: <a name="wololo">Basic Authentication</a>  
+Auth: Basic Authentication 
 
 Success Response:  
 Http code: 200  
