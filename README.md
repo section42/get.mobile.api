@@ -24,7 +24,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|List\<MenuNode>| List containing the menu tree
+|data|List\<[MenuNode](#menuNode)>| List containing the menu tree
 
 ### Product endpoint
 ***
@@ -40,7 +40,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|List\<MenuProduct>| List containing all products
+|data|List\<[MenuProduct](#menuProduct)>| List containing all products
 
 ### Configuration endpoint
 ****
@@ -56,7 +56,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|DeviceConfig| Device status object
+|data|[DeviceConfig](#deviceConfig)| Device status object
 
 ### Field endpoint
 ****
@@ -72,7 +72,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|List\<FieldModel>| The list of available fields
+|data|List\<[FieldModel](#fieldModel)>| The list of available fields
 
 ### Image endpoint
 ****
@@ -100,7 +100,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|NfcTag| The content of a nfc tag
+|data|[NfcTag](#nfcTag)| The content of a nfc tag
 
 ### Events Endpoint
 ****
@@ -149,7 +149,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|JobInfo| the object containing information about where information about the job can be found
+|data|[JobInfo](#jobInfo)| the object containing information about where information about the job can be found
 
 URL: /api/purchase/v4/{$jobId}/status  
 Method: GET  
@@ -162,7 +162,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|JobStatus| An object containing information about the specific job
+|data|[JobStatus](#jobStatus)| An object containing information about the specific job
 
 URL: /api/purchase/v4/{$jobId}/cancel  
 Method: GET  
@@ -197,7 +197,7 @@ Request:
 |pureGiftCredits|String|the amount of pureGift credits to put on the nfc tag
 |disableTagPawn|boolean| set true if no tag pawn should be charged
 |disableActivationFee|boolean | set true if no activation fee should be charged
-|fields|List\<FieldModel>| A list of fields which the nfc tag should receive
+|fields|List\<[FieldModel](#fieldModel)>| A list of fields which the nfc tag should receive
 |isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true).
 
 Success response:  
@@ -219,7 +219,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|JobStatus| An object containing information about the specific job
+|data|[JobStatus](#jobStatus)| An object containing information about the specific job
 
 URL: /api/accredit/v4/{$jobId}/cancel  
 Method: GET  
@@ -243,7 +243,7 @@ The basic structure of any transaction update is as follows:
 |-|-|-|
 |date|String| the date when the request was processed
 |type|int| The type of the update (0 = New nfc tag, 1 = Job update)
-|data|Object| An object containing information about the specific job. If the update is of type 0 (New nfc tag) this field will contain a **NfcTag** object. When the update is of type 1 (Job update) the object inside the data property will be of type **JobStatus**
+|data|Object| An object containing information about the specific job. If the update is of type 0 (New nfc tag) this field will contain a [NfcTag](#nfcTag) object. When the update is of type 1 (Job update) the object inside the data property will be of type [JobStatus](#jobStatus)
 
 The Api does not attempt to retry the update request on a failed connection, or anything similar. Updates enable a faster event propagation but there is no guarantee that a listener will receive an update.  It is therefore advised to additionally make use of the /status endpoints and the /tag_info endpoint to poll needed information as important events may be missed otherwise.
 
@@ -277,7 +277,7 @@ The following list contains the possible error codes and short explanations.
 # Models
 ***
 
-## MenuNode
+## <a name="menuNode">MenuNode</a>
 |Field|Data type|Description
 |-|-|-|
 |id|String| guid of this menu node
@@ -285,10 +285,10 @@ The following list contains the possible error codes and short explanations.
 |type|String| The node type, one of <Product, Category>
 |name|String| The name of the product or category
 |bgColor|String|hex color code of the background
-|thumbnailRef|ImageRef| Image reference for the thumbnail picture associated with the menu node
+|thumbnailRef|[ImageRef](#imageRef)| Image reference for the thumbnail picture associated with the menu node
 |children|List\<MenuNode>|List of child nodes
 
-## MenuProduct
+## <a name="menuProduct">MenuProduct</a>
 |Field|Data type|Description
 |-|-|-|
 |id|String| guid of this menu node
@@ -298,15 +298,15 @@ The following list contains the possible error codes and short explanations.
 |priceInCreditsFormatted|String|The price of a product in system credits with the credit symbol. For displaying the credit value. Decimal separator may be location dependent, e.g. "3,20T"
 |priceInCurrency|String|The price of a product in real world currency. Always formatted with a decimal point, e.g. "6.4"
 |priceInCurrencyFormatted|String|the price of a product in real world currency with the currency symbol. For displaying the currency value. Decimal separator may be location dependent, e.g. "6,40€"
-|genericData|List\<Generic>|List of generic functions associated with this menu node
+|genericData|List\<[Generic](#generic)>|List of generic functions associated with this menu node
 
-## ImageRef
+## <a name="imageRef">ImageRef</a>
 |Field|Data type|Description
 |-|-|-|
 |id|String| the guid of the image
 |url|String| a relative url pointing to the image
 
-## Generic
+## <a name="generic">Generic</a>
 |Field|Data type|Description
 |-|-|-|
 |fullString|String| the complete generic as String, e.g. "simpleGeneric(Hello,World)"
@@ -314,13 +314,13 @@ The following list contains the possible error codes and short explanations.
 |functionName|String| the name of the generic function, e.g. "simlpeGeneric"
 |paramString|String| the generic's parameters as a single String, e.g. "Hello,World"
 
-## DeviceConfig
+## <a name="deviceConfig">DeviceConfig</a>
 |Field|Data type|Description
 |-|-|-|
 |creditSymbol|String| The symbol used for representing credits
 |currencySymbol|String| The symbol used for representing real world currency
 |deviceId|String| The short id of the device,r epresented as a four digit String, e.g. "ACZK"
-|paymentTypes| List\<PaymentType>| A list of payment types enabled for this device
+|paymentTypes| List\<[PaymentType](#paymentType)>| A list of payment types enabled for this device
 |projectName|String| the name of the current project
 |siteName|String| the name of the active site
 |unitName|String| the name of the unit the active site belongs to
@@ -328,21 +328,21 @@ The following list contains the possible error codes and short explanations.
 |decimalPlacesCredits|int| the number of decimal places used for credits
 |decimalPlacesCurrency|int| the number of decimal places used for currency
 
-## FieldModel
+## <a name="fieldModel">FieldModel</a>
 |Field|Data type|Description
 |-|-|-|
 |key|String| the key of the field, e.g. "Adult"
 |description|String| a short textual description about the field, e.g. "The owner of the nfc chip is over 18 years old"
 |maxValue|int| the maximum value assignable to this field, if 1, effectively boolean
 
-## PaymentType
+## <a name="paymentType">PaymentType</a>
 |Field|Data type|Description
 |-|-|-|
 |id|String|The guid of the payment type
 |name|String| The name of the payment type, e.g. "Cashless Card"
 |type|String| one of <Cashless, Other>
 
-## NfcTag
+## <a name="nfcTag>NfcTag</a>
 |Field|Data type|Description
 |-|-|-|
 |normalCredits|String| the available amount of normal credits on the nfc chip
@@ -357,7 +357,7 @@ The following list contains the possible error codes and short explanations.
 |manager|boolean | true, if the nfc tag has manager access
 |master|boolean|true, if the nfc tag has master access
 |admin|boolean|true, if the nfc tag  has admin access
-|fields|List\<FieldModel>| a list of fields
+|fields|List\<[FieldModel](#fieldModel)>| a list of fields
 
 
 ## <a name="cartItem">CartItem</a>
@@ -367,12 +367,12 @@ The following list contains the possible error codes and short explanations.
 |menuItemId|String| the uuid of the specific item, can be retrieved via the menu endpoint
 |singlePrice|String| the price in credits of one unit of this item, can be retrieved via the product endpoint
 
-## JobInfo
+## <a name="jobInfo">JobInfo</a>
 |Field|Data type|Description
 |-|-|-|
 |status_url|String| The url where status updates about the job can be found
 
-## JobStatus
+## <a name="jobStatus">JobStatus</a>
 |Field|Data type|Description
 |-|-|-|
 |createdAt|String| The date when the request was received which created this job
