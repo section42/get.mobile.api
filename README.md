@@ -113,7 +113,7 @@ Request Body:
 
 |Field|Data type|Description
 |-|-|-|
-|url|String| The url where updates will be sent to, e.g.: http://192.168.0.1:8080/updates
+|url|String| The url where updates will be sent to, e.g.: http://<span></span>192.168.0.1:8080/updates
 
 
 Variants:  
