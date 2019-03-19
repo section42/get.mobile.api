@@ -2,8 +2,8 @@
 
 # GET mobile API v4
 
-## <a name="authorization">Authorization</a>
-[Basic Authorization](https://swagger.io/docs/specification/authentication/basic-authentication/)
+## <a name="authorization">Authentication</a>
+[Basic Authentication](https://swagger.io/docs/specification/authentication/basic-authentication/)
 
 ## Supported Protocols
 Http/ Https. If the API is configured to run via http, the api has to be addressed via port 8080, if it is in https mode, its port 9443. Therefore, to check the config of the device the address would be for example: https://<span></span>10.10.10.10:9443/api/config/v4
