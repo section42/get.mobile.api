@@ -141,6 +141,7 @@ Request:
 |-|-|-|
 |paymentType|String| the uuid of the payment type to use, can be found via the status endpoint
 |cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer
+|requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
 
 
 Success response:  
@@ -199,6 +200,7 @@ Request:
 |disableActivationFee|boolean | set true if no activation fee should be charged
 |fields|List\<[FieldModel](#fieldModel)>| A list of fields which the nfc tag should receive
 |isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true).
+|requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
 
 Success response:  
 Http code: 200  
