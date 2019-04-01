@@ -266,13 +266,14 @@ The following list contains the possible error codes and short explanations.
 | **BadRequest** | The request is invalid,
 | **ResourceNotFound** | The requested resource was not found (e.g. menu item with $id)
 | **MethodNotAllowed** | The request method is not allowed (e.g. GET instead of POST
+| **ApiNotActive**| The API is currently deactivated. Requests are only processed when API is activated
 | **NoTagPresent** | There is no nfc tag on the reader currently - tag_info endpoint only
 | **TagInvalid** | The nfc tag on the reader is invalid (e.g. broken) - tag_info endpoint only
 | **PaymentTypeNotFound** | The requested payment type does not exists - purchase endpoint only
 | **PaymentTypeNotAllowed** | The requested payment type cannot be used for a purchase - purchase endpoint only
 | **CartInvalid** | The shopping cart received in the request contains errors - purchase endpoint only 
 | **PriceMismatch** | An item in the shopping cart actually has a different price than what is assumed by the client - purchase endpoint only
-| **DecimalPlacesMismatch** | The requested resource has already been created - purchase and accreditation only
+| **DecimalPlacesMismatch** | The number of decimal places provided exceeds the allowed number of decimal places
 | **ResourceAlreadyExists** | The resource cannot be created because it already exists
 | **UnknownError** | An unknown error occured
 
