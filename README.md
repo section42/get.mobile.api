@@ -313,7 +313,7 @@ If authorization fails, the API will respond with a simple 401 (Unauthorized) HT
 
 ```
 {
-    "error_code": int,
+    "error_code": String,
     "error_message": String
 }
 ```
