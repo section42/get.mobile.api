@@ -5,6 +5,10 @@
 ## <a name="authorization">Authentication</a>
 [Basic Authentication](https://swagger.io/docs/specification/authentication/basic-authentication/)
 
+The test authentication parameters are:
+username: api
+password: test
+
 ## Supported Protocols
 Http/ Https. If the API is configured to run via http, the api has to be addressed via port 8080, if it is in https mode, its port 9443. Therefore, to check the config of the device the address would be for example: https://<span></span>10.10.10.10:9443/api/config/v4
 
@@ -115,6 +119,14 @@ Request Body:
 |-|-|-|
 |url|String| The url where updates will be sent to, e.g.: http://<span></span>192.168.0.1:8080/updates
 
+
+Example:
+
+```json
+{
+	"url":"http://10.64.5.226/callback"
+}
+```
 
 Variants:  
 
