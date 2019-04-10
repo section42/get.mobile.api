@@ -149,11 +149,11 @@ Through this endpoint a shopping cart can be handed to the API which then tries 
 
 Request:  
 
-|Field|Data type|Description|Optional
+|Field|Data type|Description|
 |-|-|-|
-|paymentType|String| the uuid of the payment type to use, can be found via the status endpoint|no
-|cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer|no
-|requiredChip|String|Optional. If provided, only the chip with the defined Id can be used|yes
+|paymentType|String| the uuid of the payment type to use, can be found via the status endpoint
+|cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer
+|requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
 
 Example:
 
