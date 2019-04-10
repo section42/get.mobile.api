@@ -149,12 +149,31 @@ Through this endpoint a shopping cart can be handed to the API which then tries 
 
 Request:  
 
-|Field|Data type|Description
+|Field|Data type|Description|Optional
 |-|-|-|
-|paymentType|String| the uuid of the payment type to use, can be found via the status endpoint
-|cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer
-|requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
+|paymentType|String| the uuid of the payment type to use, can be found via the status endpoint|no
+|cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer|no
+|requiredChip|String|Optional. If provided, only the chip with the defined Id can be used|yes
 
+Example:
+
+```json
+{
+	"paymentType":"f3fd29bd-d5b9-4fa3-a68c-c8cfdfc0a482",
+	"cartItems":[
+		{
+			"count":1,
+			"menuItemId": "3cfed0c0-2658-4a4f-9bcd-bb43f3f1535a",
+			"singlePrice": "2.1"
+		},
+		{
+			"count":5,
+			"menuItemId": "123ed0c0-2658-4a4f-9bcd-bb43f3f1535a",
+			"singlePrice": "8"
+		}
+	]
+}
+```
 
 Success response:  
 Http code: 200  
@@ -163,6 +182,7 @@ Response Body:
 |Field|Data type|Description
 |-|-|-|
 |data|[JobInfo](#jobInfo)| the object containing information about where information about the job can be found
+
 
 URL: /api/purchase/v4/{$jobId}/status  
 Method: GET  
@@ -213,6 +233,32 @@ Request:
 |fields|List\<[FieldModel](#fieldModel)>| A list of fields which the nfc tag should receive
 |isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true).
 |requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
+
+Example:
+```json
+{
+	"externalWorkerId":"123ed0c0-2658-4a4f-9bcd-bb43f3f1535a",
+	"workerType":"worker",
+	"firstName": "John",
+	"lastName": "Doe",
+	"fields":[
+		{
+			"key": "AAA",
+			"value":1
+		},
+		{
+			"key": "FoodCoupon",
+			"value":5
+		}
+	],
+	"normalCredits":"1",
+	"preGiftCredits":"0",
+	"pureGiftCredits":"0",
+	"isUpgrade":false,
+	"disableTagPawn":true,
+	"disableActivationFee":true
+}
+```
 
 Success response:  
 Http code: 200  
