@@ -2,6 +2,50 @@
 
 # GET mobile API v4
 
+## Changelog
+### Device version 49.22, released on 19.06.2019
+Accreditation Endpoint: Added functionality for accrediting fields. An accreditation request is now <b>required to specify an operation per field</b> sent in the request. Any existing fields not defined in the request remain untouched. An operation is one of <Set,Increment,Decrement>. Previous versions only allowed to set a flag to a specified value. From now on, also incrementing and decrementing a fields value are supported.
+
+previous fields data for accreditation request:
+```json
+	
+"fields":[
+	{
+		"key": "some_flag",
+		"value":1
+	},
+	{
+		"key": "some_other_flag",
+		"value":5
+	}
+]
+
+```
+
+new fiels data for accreditation request:
+```json
+	
+"fields":[
+	{
+		"key": "some_flag",
+		"value":1,
+		"operation":"Set"
+	},
+	{
+		"key": "some_other_flag",
+		"value":5,
+		"operation":"Increment"
+	},
+	{
+		"key": "third_flag",
+		"value":2,
+		"operation":"Decrement"
+	}
+]
+
+```
+
+
 ## <a name="authorization">Authentication</a>
 [Basic Authentication](https://swagger.io/docs/specification/authentication/basic-authentication/)
 
@@ -230,7 +274,7 @@ Request:
 |pureGiftCredits|String|the amount of pureGift credits to put on the nfc tag
 |disableTagPawn|boolean| set true if no tag pawn should be charged
 |disableActivationFee|boolean | set true if no activation fee should be charged
-|fields|List\<[FieldModel](#fieldModel)>| A list of fields which the nfc tag should receive
+|fields|List\<[FieldChangeRequest](#fieldChangeRequest)>| A list of fields which the nfc tag should receive
 |isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true).
 |requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
 
@@ -244,11 +288,13 @@ Example:
 	"fields":[
 		{
 			"key": "AAA",
-			"value":1
+			"value":1,
+			"operation":"Set"
 		},
 		{
 			"key": "FoodCoupon",
-			"value":5
+			"value":5,
+			"operation":"Increment"
 		}
 	],
 	"normalCredits":"1",
@@ -395,6 +441,24 @@ The following list contains the possible error codes and short explanations.
 |key|String| the key of the field, e.g. "Adult"
 |description|String| a short textual description about the field, e.g. "The owner of the nfc chip is over 18 years old"
 |maxValue|int| the maximum value assignable to this field, if 1, effectively boolean
+
+
+## <a name="fieldChangeRequest">FieldChangeRequest</a>
+|Field|Data type|Description
+|-|-|-|
+|key|String| the key of the field, e.g. "free_drink"
+|value|int| the value of the change, positive integer
+|operation|String| one of <Set,Increment,Decrement>. The operation which should be applied onto the field
+
+Example: Decrement a nfc chips "free_drink" field by 3
+
+```
+{
+    "key": free_drink,
+    "value": 3,
+    "operation":"Decrement"
+}
+```
 
 ## <a name="paymentType">PaymentType</a>
 |Field|Data type|Description
