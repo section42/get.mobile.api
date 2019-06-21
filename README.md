@@ -244,7 +244,7 @@ Response Body:
 URL: /api/purchase/v4/{$jobId}/cancel  
 Method: GET  
 Auth: [Basic Authentication](#authorization)
-Attempts to cancel the purchase job identified by the provided jobId  
+Attempts to cancel the purchase job identified by the provided jobId. It is required to check the status of the job even after invoking cancellation, as the job might still be completed. Only if the status of the job is one of <Cancelled, Success> the job has completed.
 
 Success response:  
 Http code: 204  
@@ -330,7 +330,7 @@ Response Body:
 URL: /api/accredit/v4/{$jobId}/cancel  
 Method: GET  
 Auth: [Basic Authentication](#authorization) 
-Attempts to cancel the accreditation job identified by the provided jobId  
+Attempts to cancel the accreditation job identified by the provided jobId. It is required to check the status of the job even after invoking cancellation, as the job might still be completed. Only if the status of the job is one of <Cancelled, Success> the job has completed.
 
 Success response:  
 Http code: 204  
