@@ -263,7 +263,7 @@ Request:
 |Field|Data type|Description
 |-|-|-|
 |workerId|String| a random uuid to identify the worker
-|workerType|String| one of <admin,manager,worker,unknown>, defines the access level of the nfc tag. If the value "unknown" is provided, the API does not change the nfc chips workerType. This can be of use if one wants to perform an upgrade giving out credits only.
+|workerType|String| one of <unknown, guest, worker, powerworker, serviceuser, manager, master, admin>, defines the access level of the nfc tag. If the value "unknown" is provided, the API does not change the nfc chips workerType. This can be of use if one wants to perform an upgrade giving out credits only.
 |firstName|String| the first name of the person
 |lastName|String| the last name of the person
 |role|String| the role of the person, e.g. Barkeeper. this field is free text
