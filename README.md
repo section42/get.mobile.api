@@ -406,7 +406,7 @@ Attempts to cancel the accreditation job identified by the provided jobId. It is
 Success response:  
 Http code: 204  
 
-## Transaction Updates
+## <a
 ***
 Transaction updates are received when registering a callback url through the /events endpoint. The APi will attempt a POST request against the urls registered via /events endpoint containing an update object in its body 
 The Api then tries to notify its listeners about the following event types:
@@ -509,10 +509,16 @@ The following list contains the possible error codes and short explanations.
 ## <a name="fieldModel">FieldModel</a>
 |Field|Data type|Description
 |-|-|-|
-|key|String| the key of the field, e.g. "Adult"
-|description|String| a short textual description about the field, e.g. "The owner of the nfc chip is over 18 years old"
-|maxValue|int| the maximum value assignable to this field, if 1, effectively boolean
+|fieldKey|String| the key of the field, e.g. "Adult"
+|filedType|String| one of <TypeBoolean, TypeInteger>
+|integerField|[IntegerFieldModel](#integerFieldModel)| Set if fieldType is set to "TypeInteger"
 
+
+## <a name="integerFieldModel">IntegerFieldModel</a>
+|Field|Data type|Description
+|-|-|-|
+|minIntegerValue|int| the minimum value of the field
+|maxIntegerValue|int| the maximum value of the field
 
 ## <a name="fieldChangeRequest">FieldChangeRequest</a>
 |Field|Data type|Description
