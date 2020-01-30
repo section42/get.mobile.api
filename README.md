@@ -645,7 +645,8 @@ Example of different field changes
 ## <a name="jobInfo">JobInfo</a>
 |Field|Data type|Description
 |-|-|-|
-|status_url|String| The url where status updates about the job can be found
+|statusUrl|String| The url where status updates about the job can be found
+|cancellationUrl|String| The url where a cancellation of the job can be invoked
 
 ## <a name="jobStatus">JobStatus</a>
 |Field|Data type|Description
