@@ -406,9 +406,9 @@ Attempts to cancel the accreditation job identified by the provided jobId. It is
 Success response:  
 Http code: 204  
 
-## <a
+## <a name="events">Events</a>
 ***
-Transaction updates are received when registering a callback url through the /events endpoint. The APi will attempt a POST request against the urls registered via /events endpoint containing an update object in its body 
+Events are received when registering a callback url through the /events endpoint. The APi will attempt a POST request against the urls registered via /events endpoint containing an update object in its body 
 The Api then tries to notify its listeners about the following event types:
 
 1. Detected nfc tag: When a new nfc tag was read.
@@ -418,9 +418,23 @@ The basic structure of any transaction update is as follows:
 
 |Field|Data type|Description
 |-|-|-|
-|date|String| the date when the request was processed
-|type|int| The type of the update (0 = New nfc tag, 1 = Job update)
-|data|Object| An object containing information about the specific job. If the update is of type 0 (New nfc tag) this field will contain a [NfcTag](#nfcTag) object. When the update is of type 1 (Job update) the object inside the data property will be of type [JobStatus](#jobStatus)
+|type|String| the type of the event. one of <JobUpdate, NewTag>
+|newTag|[NfcTag](#nfcTag)| Set if the event is of type "NewTag"
+|jobUpdate|[JobStatus](#jobStatus)| Set if the event is of type "JobUpdate"
+
+```json
+{
+	"type": "JobUpdate",
+	"newTag":null,
+	"jobUpdate":{
+		"jobId":"414badd8-dff0-4a08-9a8d-a5f964a63d29",
+		"status":"Pending",
+		"result":null,
+		"createdAt":1580380077351
+	}
+}
+
+```
 
 The Api does not attempt to retry the update request on a failed connection, or anything similar. Updates enable a faster event propagation but there is no guarantee that a listener will receive an update.  It is therefore advised to additionally make use of the /status endpoints and the /tag_info endpoint to poll needed information as important events may be missed otherwise.
 
