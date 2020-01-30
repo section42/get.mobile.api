@@ -588,7 +588,7 @@ Example of different field changes
 ## <a name="jobStatus">JobStatus</a>
 |Field|Data type|Description
 |-|-|-|
-|createdAt|String| The date when the request was received which created this job
+|createdAt|long| The date when the request was received which created this job. Milliseconds since unix epoch
 |jobId|String| The uuid of the job
 |result|[NfcTag](#nfcTag)|After successfully charging an nfc tag, the result contains the nfc tags state after it was charged, it contains null otherwise
 |status|int|The current status of the job, one of <Pending, Cancelled, Success>
