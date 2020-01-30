@@ -5,6 +5,43 @@
 ## Changelog
 
 ### Device version 49.48
+
+Events (previously referred to as transaction updates): An event (can be received when a callback is registered) now consists of a type <JobUpdate, NewTag> providing information about which type of event ocurred. Depending on the type, either the "newTag" property is set, indicating a [NfcTag](#nfcTag) has been detected while no job is currently running, or the "jobUpdate" property is set, indicating that new information is available related to the currently running [job](#jobStatus).
+
+```json
+{
+	"type": "JobUpdate",
+	"newTag":null,
+	"jobUpdate":{
+		"jobId":"414badd8-dff0-4a08-9a8d-a5f964a63d29",
+		"status":pending,
+		"result":null,
+		"createdAt":1580380077351
+	}
+}
+
+```
+
+JobStatus: the createdAt property's dataType has changed from String to long. The long value represents the current timestamp as milliseconds since unix epoch.
+
+[FieldModel](#fieldModel): The properties description and maxValue have been removed. Instead, a field now has the properties key, value and type. The value is a String representation of the fields value and the type gives information about the fields data type <TypeBoolean, TypeInteger>. A boolean field can have the values <true,false> in String representation whereas an integer field's value containes the string representation of an integer value.
+
+```json
+[
+	{
+		"key": "some_flag",
+		"value":"false",
+		"type":"TypeBoolean"
+	},
+	{
+		"key": "some_other_flag",
+		"value":"5",
+		"type":"TypeInteger"
+	}
+]
+
+```
+
 Accreditation Endpoint: The functionality to accredit fields has changed. The "fields" property is now named "fieldChanges". Field changes can now have different data types. For the moment, these data types are limited to Boolean and Integer. In addition, different data types have different change types.
 Example of all field changes currently available:
 ```json
@@ -481,7 +518,7 @@ The following list contains the possible error codes and short explanations.
 |Field|Data type|Description
 |-|-|-|
 |key|String| the key of the field, e.g. "free_drink"
-|value|String| String representation of the value. For Boolean fields ["true"|"false"], for Integer fields the Integer value as String
+|value|String| String representation of the value. For Boolean fields this is one of <true,false>, for Integer fields the Integer value as String
 |type|String| one of <BooleanSet, IntegerAbsolute, IntegerRelative>. The operation which should be applied onto the field. Dependent on field's data type
 
 Example of different field changes
@@ -553,6 +590,6 @@ Example of different field changes
 |-|-|-|
 |createdAt|String| The date when the request was received which created this job
 |jobId|String| The uuid of the job
-|result|NfcTag|After successfully charging an nfc tag, the result contains the nfc tags state after it was charged, it contains null otherwise
+|result|[NfcTag](#nfcTag)|After successfully charging an nfc tag, the result contains the nfc tags state after it was charged, it contains null otherwise
 |status|int|The current status of the job, one of <Pending, Cancelled, Success>
 |statusDetails|String| A textual description of the current status of the job to help with debugging. If for example a invalid nfc tag is used, the status of the current job will not change (it will stay in its pending state) but the statusDetails field will now contain a textual note stating that an invalid tag was last placed on the reader.
