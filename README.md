@@ -3,6 +3,40 @@
 # GET mobile API v4
 
 ## Changelog
+
+### Device version 49.48
+Accreditation Endpoint: The functionality to accredit fields has changed. The "fields" property is now named "fieldChanges". Field changes can now have different data types. For the moment, these data types are limited to Boolean and Integer. In addition, different data types have different change types.
+Example of all field changes currently available:
+```json
+	
+"fieldChanges":[
+	{
+		"key": "some_flag",
+		"value":"true",
+		"type":"BooleanSet"
+	},
+	{
+		"key": "some_other_flag",
+		"value":"5",
+		"type":"IntegerAbsolute"
+	},
+	{
+		"key": "third_flag",
+		"value":"-3",
+		"type":"IntegerRelative"
+	},
+	{
+		"key": "another_flag",
+		"value":"8",
+		"type":"IntegerRelative"
+	}
+]
+
+```
+
+The value field is now a String field which holds the desired change value in String representation. For integer fields this is the String representation of any integer. For boolean fields it is either "true" or "false".
+
+
 ### Device version 49.22, released on 19.06.2019
 Accreditation Endpoint: Added functionality for accrediting fields. An accreditation request is now <b>required to specify an operation per field</b> sent in the request. Any existing fields not defined in the request remain untouched. An operation is one of <Set,Increment,Decrement>. Previous versions only allowed to set a flag to a specified value. From now on, also incrementing and decrementing a fields value are supported.
 
@@ -274,8 +308,8 @@ Request:
 |pureGiftCredits|String|the amount of pureGift credits to put on the nfc tag
 |disableTagPawn|boolean| set true if no tag pawn should be charged
 |disableActivationFee|boolean | set true if no activation fee should be charged
-|fields|List\<[FieldChangeRequest](#fieldChangeRequest)>| A list of fields which the nfc tag should receive
-|isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true).
+|fieldChanges|List\<[FieldChangeRequest](#fieldChangeRequest)>| A list of fields which the nfc tag should receive
+|isUpgrade|boolean|defines of the accreditation is supposed to overwrite the existing accreditaiton on the tag (isUpgrade = false) or if the existing accreditation should be extended by the provided one (isUpgrade = true). Note that a value of false will reset all fields on the nfc chip before applying any provided field changes.
 |requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
 
 Example:
@@ -447,17 +481,34 @@ The following list contains the possible error codes and short explanations.
 |Field|Data type|Description
 |-|-|-|
 |key|String| the key of the field, e.g. "free_drink"
-|value|int| the value of the change, positive integer
-|operation|String| one of <Set,Increment,Decrement>. The operation which should be applied onto the field
+|value|String| String representation of the value. For Boolean fields ["true"|"false"], for Integer fields the Integer value as String
+|type|String| one of <BooleanSet, IntegerAbsolute, IntegerRelative>. The operation which should be applied onto the field. Dependent on field's data type
 
-Example: Decrement a nfc chips "free_drink" field by 3
+Example of different field changes
 
 ```
-{
-    "key": free_drink,
-    "value": 3,
-    "operation":"Decrement"
-}
+[
+	{
+		"key": "some_flag",
+		"value":"true",
+		"type":"BooleanSet"
+	},
+	{
+		"key": "some_other_flag",
+		"value":"5",
+		"type":"IntegerAbsolute"
+	},
+	{
+		"key": "third_flag",
+		"value":"-3",
+		"type":"IntegerRelative"
+	},
+	{
+		"key": "another_flag",
+		"value":"8",
+		"type":"IntegerRelative"
+	}
+]
 ```
 
 ## <a name="paymentType">PaymentType</a>
