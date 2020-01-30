@@ -7,7 +7,7 @@
 2. [Authentication](#authorization)
 3. [Supported Protocols](#supportedProtocols)
 4. [Endpoints](#endpoints)
-..1 [Menu](#menuEndpoint)
+	* [Menu](#menuEndpoint)
 
 ## <a name="changeLog">Change Log</a>
 
