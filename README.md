@@ -4,7 +4,10 @@
 
 ## Index
 1. [Change Log](#changeLog)
-2. [Supported Protocols](#supportedProtocols)
+2. [Authentication](#authorization)
+3. [Supported Protocols](#supportedProtocols)
+4. [Endpoints](#endpoints)
+..1 [Menu](#menuEndpoint)
 
 ## <a name="changeLog">Change Log</a>
 
@@ -131,9 +134,9 @@ password: test
 ## <a name="supportedProtocols">Supported Protocols</a>
 Http/ Https. If the API is configured to run via http, the api has to be addressed via port 8080, if it is in https mode, its port 9443. Therefore, to check the config of the device the address would be for example: https://<span></span>10.10.10.10:9443/api/config/v4
 
-## Endpoints
+## <a name="endpoints">Endpoints</a>
 ***
-### Menu endpoint
+### <a name="menuEndpoint">Menu</a>
 ***
 The menu endpoint provides information about the structure of the product menu, i.e. how items are nested in the menu.
 
@@ -149,7 +152,7 @@ Response Body:
 |-|-|-|
 |data|List\<[MenuNode](#menuNode)>| List containing the menu tree
 
-### Product endpoint
+### <a name="productEndpoint">Product</a>
 ***
 The product endpoint provides information about the products available via the api. 
 
@@ -165,7 +168,7 @@ Response Body:
 |-|-|-|
 |data|List\<[MenuProduct](#menuProduct)>| List containing all products
 
-### Configuration endpoint
+### <a name="configurationEndpoint">Configuration</a>
 ****
 The configuration endpoint provides information about the device and the current configuration.
 
@@ -181,7 +184,7 @@ Response Body:
 |-|-|-|
 |data|[DeviceConfig](#deviceConfig)| Device status object
 
-### Field endpoint
+### <a name="fieldsEndpoint">Fields</a>
 ****
 The field endpoint returns a list of fields confogured for the project.
 
@@ -197,7 +200,7 @@ Response Body:
 |-|-|-|
 |data|List\<[FieldModel](#fieldModel)>| The list of available fields
 
-### Image endpoint
+### <a name="imageEndpoint">Images</a>
 ****
 This endpoint returns images associated with products in the devices menu. 
 
@@ -209,7 +212,7 @@ Success response:
 Http code: 200  
 the respsective image  
 
-### TagInfo Endpoint
+### <a name="tagInfoEndpoint">Nfc Tag Info</a>
 ****
 This endpoint returns the content of an nfc tag which is present at the reader when the request is received. If no nfc tag is present, an error code is returned.
 
@@ -225,7 +228,7 @@ Response Body:
 |-|-|-|
 |data|[NfcTag](#nfcTag)| The content of a nfc tag
 
-### Events Endpoint
+### <a name="eventsEndpoint">Events</a>
 ****
 Allows a client to register/ unregister for push notifications of Api events. At most 10 listeners can listen for events and therefore any new listener will replace the oldest listener (FIFO).
 
@@ -257,7 +260,7 @@ Variants:
 Success response:  
 Http code: 204  
 
-### Purchase Endpoint
+### <a name="purchaseEndpoint">Purchase</a>
 ****
 This endpoint is used to start a purchase and get information about the status of purchase requests
 
@@ -324,7 +327,7 @@ Attempts to cancel the purchase job identified by the provided jobId. It is requ
 Success response:  
 Http code: 204  
 
-### Accreditation Endpoint
+### <a name="accreditationEndpoint">Accreditation</a>
 ****
 This endpoint is used to accredit nfc tags.  
 
@@ -410,6 +413,37 @@ Attempts to cancel the accreditation job identified by the provided jobId. It is
 Success response:  
 Http code: 204  
 
+## <a name="errorResponses">Error Responses</a>
+***
+If authorization fails, the API will respond with a simple 401 (Unauthorized) HTTP response code. If any error occurs after being authorized, error responses will contain additional information about the error in the following schema:
+
+```
+{
+    "error_code": String,
+    "error_message": String
+}
+```
+The following list contains the possible error codes and short explanations.
+
+| Code  | Message
+|:-|:-
+| **BadRequest** | The request is invalid,
+| **ResourceNotFound** | The requested resource was not found (e.g. menu item with $id)
+| **MethodNotAllowed** | The request method is not allowed (e.g. GET instead of POST
+| **ApiNotActive**| The API is currently deactivated. Requests are only processed when API is activated
+| **NoTagPresent** | There is no nfc tag on the reader currently - tag_info endpoint only
+| **TagInvalid** | The nfc tag on the reader is invalid (e.g. broken) - tag_info endpoint only
+| **PaymentTypeNotFound** | The requested payment type does not exists - purchase endpoint only
+| **PaymentTypeNotAllowed** | The requested payment type cannot be used for a purchase - purchase endpoint only
+| **CartInvalid** | The shopping cart received in the request contains errors - purchase endpoint only 
+| **PriceMismatch** | An item in the shopping cart actually has a different price than what is assumed by the client - purchase endpoint only
+| **DecimalPlacesMismatch** | The number of decimal places provided exceeds the allowed number of decimal places
+| **ResourceAlreadyExists** | The resource cannot be created because it already exists
+| **UnknownError** | An unknown error occured
+
+# <a name="models">Models</a>
+***
+
 ## <a name="events">Events</a>
 ***
 Events are received when registering a callback url through the /events endpoint. The APi will attempt a POST request against the urls registered via /events endpoint containing an update object in its body 
@@ -452,37 +486,6 @@ The basic structure of any transaction update is as follows:
 ```
 
 The Api does not attempt to retry the update request on a failed connection, or anything similar. Updates enable a faster event propagation but there is no guarantee that a listener will receive an update.  It is therefore advised to additionally make use of the /status endpoints and the /tag_info endpoint to poll needed information as important events may be missed otherwise.
-
-## Error Responses
-***
-If authorization fails, the API will respond with a simple 401 (Unauthorized) HTTP response code. If any error occurs after being authorized, error responses will contain additional information about the error in the following schema:
-
-```
-{
-    "error_code": String,
-    "error_message": String
-}
-```
-The following list contains the possible error codes and short explanations.
-
-| Code  | Message
-|:-|:-
-| **BadRequest** | The request is invalid,
-| **ResourceNotFound** | The requested resource was not found (e.g. menu item with $id)
-| **MethodNotAllowed** | The request method is not allowed (e.g. GET instead of POST
-| **ApiNotActive**| The API is currently deactivated. Requests are only processed when API is activated
-| **NoTagPresent** | There is no nfc tag on the reader currently - tag_info endpoint only
-| **TagInvalid** | The nfc tag on the reader is invalid (e.g. broken) - tag_info endpoint only
-| **PaymentTypeNotFound** | The requested payment type does not exists - purchase endpoint only
-| **PaymentTypeNotAllowed** | The requested payment type cannot be used for a purchase - purchase endpoint only
-| **CartInvalid** | The shopping cart received in the request contains errors - purchase endpoint only 
-| **PriceMismatch** | An item in the shopping cart actually has a different price than what is assumed by the client - purchase endpoint only
-| **DecimalPlacesMismatch** | The number of decimal places provided exceeds the allowed number of decimal places
-| **ResourceAlreadyExists** | The resource cannot be created because it already exists
-| **UnknownError** | An unknown error occured
-
-# Models
-***
 
 ## <a name="menuNode">MenuNode</a>
 |Field|Data type|Description
