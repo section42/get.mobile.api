@@ -14,7 +14,7 @@ Events (previously referred to as transaction updates): An event (can be receive
 	"newTag":null,
 	"jobUpdate":{
 		"jobId":"414badd8-dff0-4a08-9a8d-a5f964a63d29",
-		"status":pending,
+		"status":"Pending",
 		"result":null,
 		"createdAt":1580380077351
 	}
