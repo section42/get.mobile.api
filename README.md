@@ -2,7 +2,11 @@
 
 # GET mobile API v4
 
-## Changelog
+## Index
+1. [Change Log](#changeLog)
+2. [Supported Protocols](#supportedProtocols)
+
+## <a name="changeLog">Change Log</a>
 
 ### Device version 49.48
 
@@ -124,7 +128,7 @@ The test authentication parameters are:
 username: api
 password: test
 
-## Supported Protocols
+## <a name="supportedProtocols">Supported Protocols</a>
 Http/ Https. If the API is configured to run via http, the api has to be addressed via port 8080, if it is in https mode, its port 9443. Therefore, to check the config of the device the address would be for example: https://<span></span>10.10.10.10:9443/api/config/v4
 
 ## Endpoints
@@ -432,6 +436,17 @@ The basic structure of any transaction update is as follows:
 		"result":null,
 		"createdAt":1580380077351
 	}
+}
+
+```
+
+```json
+{
+	"type": "NewTag",
+	"newTag":{
+		
+	},
+	"jobUpdate":null
 }
 
 ```
