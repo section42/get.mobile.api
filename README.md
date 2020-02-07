@@ -24,13 +24,13 @@
 	* [Image Reference](#imageRef)
 	* [Generic](#generic)
 	* [Device Config](#deviceConfig)
-	* [Field](#fieldModel)
+	* [Fields](#fieldModel)
 	* [Boolean Field](#booleanFieldModel)
 	* [Integer Field](#integerFieldModel)
-	* [Field Definition](#fieldDefinition)
+	* [Field Definitions](#fieldDefinition)
 	* [Boolean Field Definition](#booleanFieldDefinition)
 	* [IntegerField Definition](#integerFieldDefinition)
-	* [Field Change](#fieldChange)
+	* [Field Changes](#fieldChange)
 	* [Boolean Field Change](#booleanFieldChange)
 	* [Integer Field Change](#integerFieldChange)
 	* [Payment Type](#paymentType)
@@ -682,7 +682,7 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |decimalPlacesCredits|int| the number of decimal places used for credits
 |decimalPlacesCurrency|int| the number of decimal places used for currency
 
-## <a name="fieldsDefinition">Fields Definition</a>
+## <a name="fieldsDefinition">Fields Definitions</a>
 |Field|Data type|Description
 |-|-|-|
 |booleanFields|List<[Boolean Field Definition](#booleanFieldDefinition)>| List of definitions for all available boolean fields
@@ -732,7 +732,7 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |key|String| the key of the boolean field to change
 |value|boolean| the value of the change.
 
-## <a name="integerFieldModel">Integer Field Change</a>
+## <a name="integerFieldChange">Integer Field Change</a>
 |Field|Data type|Description
 |-|-|-|
 |type|String| the type of the integer change operation. One of <Absolute, Relative>
