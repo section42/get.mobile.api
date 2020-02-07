@@ -35,6 +35,120 @@
 
 ## <a name="changeLog">Change Log</a>
 
+### Device version 49.49
+Changes to fields have been made to allow clients to access the easier. For the [fields](#fieldsEndpoint) endpoint, the response model was updated to group fields by their data type. 
+
+```json
+{
+    "data": {
+        "booleanFields": [
+            {
+                "key": "some_boolean"
+            },
+            {
+                "key": "another_boolean"
+            }
+        ],
+        "integerFields": [
+            {
+                "key": "some_integer",
+                "minValue": 0,
+                "maxValue": 15
+            },
+            {
+                "key": "another_integer",
+                "minValue": 0,
+                "maxValue": 31
+            }
+        ]
+    }
+}
+
+```
+
+For an [Nfc Tag](#nfcTag) model, also changes were made to group fields by data type. 
+
+```json
+{
+    "data": [
+        {
+            "sessionCounter": 0,
+            "hasPaidTagPawn": false,
+            "pureGiftCredits": "0",
+            "preGiftCredits": "0",
+            "worker": true,
+            "fields": {
+                "booleanFields": [
+                    {
+                        "key": "some_boolean",
+                        "value": false
+                    },
+                    {
+                        "key": "another_boolean",
+                        "value": true
+                    }
+                ],
+                "integerFields": [
+                    {
+                        "key": "some_integer",
+                        "value": 0
+                    },
+                    {
+                        "key": "another_integer",
+                        "value": 23
+                    }
+                ]
+            },
+            "hasTagPawnDisabled": false,
+            "tagType": "Valid",
+            "powerworker": false,
+            "normalCredits": "26.5",
+            "totalCredits": "26.5",
+            "master": false,
+            "tagNr": "04EA6042924F80",
+            "admin": true,
+            "active": true,
+            "manager": false,
+            "hasActivationFeeDisabled": false
+        }
+    ]
+}
+```
+
+For the [accreditation](#accreditationEndpoint) endpoint, the field changes sent over in the request now also have to be grouped by data type:
+
+```json
+{
+	"externalWorkerId":"{{$guid}}",
+	"workerType":"admin",
+	"firstName": "moritz",
+	"lastName": "brandl",
+	"role": "ceo",
+	"fieldChanges": {
+		"booleanFieldChanges":[
+			{
+			"type":"Set",
+			"key":"some_boolean",
+			"value":true
+			}
+		],
+		"integerFieldChanges":[
+			{
+			"type":"Relative",
+			"key":"another_integer",
+			"value":5
+			}
+		]
+	},
+	"company": "myCompany",
+	"managerGroupNr":20,
+	"normalCredits":"0",
+	"preGiftCredits":"0",
+	"pureGiftCredits":"0",
+	"isUpgrade":true
+}
+```
+
 ### Device version 49.48
 
 Events (previously referred to as transaction updates): An event (can be received when a callback is registered) now consists of a type <JobUpdate, NewTag> providing information about which type of event ocurred. Depending on the type, either the "newTag" property is set, indicating a [NfcTag](#nfcTag) has been detected while no job is currently running, or the "jobUpdate" property is set, indicating that new information is available related to the currently running [job](#jobStatus).
@@ -222,7 +336,7 @@ Response Body:
 
 |Field|Data type|Description
 |-|-|-|
-|data|List\<[FieldModel](#fieldModel)>| The list of available fields
+|data|[Field Definition](#fieldsDefinition)| Object containing information about all available fields
 
 ### <a name="imageEndpoint">Images</a>
 ****
@@ -562,13 +676,23 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |decimalPlacesCredits|int| the number of decimal places used for credits
 |decimalPlacesCurrency|int| the number of decimal places used for currency
 
-## <a name="fieldModel">FieldModel</a>
+## <a name="fieldsDefinition">Fields Definition</a>
 |Field|Data type|Description
 |-|-|-|
-|fieldKey|String| the key of the field, e.g. "Adult"
-|filedType|String| one of <TypeBoolean, TypeInteger>
-|integerField|[IntegerFieldModel](#integerFieldModel)| Set if fieldType is set to "TypeInteger"
+|booleanFields|List<[Boolean Field Definition](#booleanFieldDefinition)>| the key of the field, e.g. "Adult"
+|integerFields|List<[Integer Field Definition](#integerFieldDefinition)>| one of <TypeBoolean, TypeInteger>
 
+## <a name="booleanFieldDefinition">Boolean Field Definition</a>
+|Field|Data type|Description
+|-|-|-|
+|key|String| the key of the field, e.g. "Adult"
+
+## <a name="integerFieldDefinition">Integer Field Definition</a>
+|Field|Data type|Description
+|-|-|-|
+|key|String| the key of the field, e.g. "Adult"
+|minValue|int| minimum assignable value
+|maxValue|int| maximum assignable value
 
 ## <a name="integerFieldModel">IntegerFieldModel</a>
 |Field|Data type|Description
