@@ -119,10 +119,10 @@ For the [accreditation](#accreditationEndpoint) endpoint, the field changes sent
 
 ```json
 {
-	"externalWorkerId":"{{$guid}}",
+	"externalWorkerId":"e405a758-bb31-4f7f-9a2e-3290f888e41a",
 	"workerType":"admin",
-	"firstName": "moritz",
-	"lastName": "brandl",
+	"firstName": "John",
+	"lastName": "Doe",
 	"role": "ceo",
 	"fieldChanges": {
 		"booleanFieldChanges":[
@@ -169,7 +169,7 @@ Events (previously referred to as transaction updates): An event (can be receive
 
 JobStatus: the createdAt property's dataType has changed from String to long. The long value represents the current timestamp as milliseconds since unix epoch.
 
-[FieldModel](#fieldModel): The properties description and maxValue have been removed. Instead, a field now has the properties key, value and type. The value is a String representation of the fields value and the type gives information about the fields data type <TypeBoolean, TypeInteger>. A boolean field can have the values <true,false> in String representation whereas an integer field's value containes the string representation of an integer value.
+FieldModel: The properties description and maxValue have been removed. Instead, a field now has the properties key, value and type. The value is a String representation of the fields value and the type gives information about the fields data type <TypeBoolean, TypeInteger>. A boolean field can have the values <true,false> in String representation whereas an integer field's value containes the string representation of an integer value.
 
 ```json
 [
