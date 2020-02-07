@@ -25,8 +25,14 @@
 	* [Generic](#generic)
 	* [Device Config](#deviceConfig)
 	* [Field](#fieldModel)
+	* [Boolean Field](#booleanFieldModel)
 	* [Integer Field](#integerFieldModel)
-	* [Field Change](#fieldChangeRequest)
+	* [Field Definition](#fieldDefinition)
+	* [Boolean Field Definition](#booleanFieldDefinition)
+	* [IntegerField Definition](#integerFieldDefinition)
+	* [Field Change](#fieldChange)
+	* [Boolean Field Change](#booleanFieldChange)
+	* [Integer Field Change](#integerFieldChange)
 	* [Payment Type](#paymentType)
 	* [Nfc Tag](#nfcTag)
 	* [Cart Item](#cartItem)
@@ -679,8 +685,8 @@ The Api does not attempt to retry the update request on a failed connection, or 
 ## <a name="fieldsDefinition">Fields Definition</a>
 |Field|Data type|Description
 |-|-|-|
-|booleanFields|List<[Boolean Field Definition](#booleanFieldDefinition)>| the key of the field, e.g. "Adult"
-|integerFields|List<[Integer Field Definition](#integerFieldDefinition)>| one of <TypeBoolean, TypeInteger>
+|booleanFields|List<[Boolean Field Definition](#booleanFieldDefinition)>| List of definitions for all available boolean fields
+|integerFields|List<[Integer Field Definition](#integerFieldDefinition)>| List of definitions for all available integer fields
 
 ## <a name="booleanFieldDefinition">Boolean Field Definition</a>
 |Field|Data type|Description
@@ -694,45 +700,44 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |minValue|int| minimum assignable value
 |maxValue|int| maximum assignable value
 
-## <a name="integerFieldModel">IntegerFieldModel</a>
+
+## <a name="fieldModel">Fields</a>
 |Field|Data type|Description
 |-|-|-|
-|minIntegerValue|int| the minimum value of the field
-|maxIntegerValue|int| the maximum value of the field
+|booleanFields|List<[Boolean Field](#booleanFieldModel)>| List of all boolean fields and their values
+|integerFields|List<[Integer Field](#integerFieldModel)>| List of all integer fields and their values
 
-## <a name="fieldChangeRequest">FieldChangeRequest</a>
+## <a name="booleanFieldModel">Boolean Field</a>
 |Field|Data type|Description
 |-|-|-|
-|key|String| the key of the field, e.g. "free_drink"
-|value|String| String representation of the value. For Boolean fields this is one of <true,false>, for Integer fields the Integer value as String
-|type|String| one of <BooleanSet, IntegerAbsolute, IntegerRelative>. The operation which should be applied onto the field. Dependent on field's data type
+|key|String| the key of the field, e.g. "Adult"
+|value|boolean| the value of the field
 
-Example of different field changes
+## <a name="integerFieldModel">Integer Field</a>
+|Field|Data type|Description
+|-|-|-|
+|key|String| the key of the field, e.g. "Adult"
+|value|int| the value of the field
 
-```
-[
-	{
-		"key": "some_flag",
-		"value":"true",
-		"type":"BooleanSet"
-	},
-	{
-		"key": "some_other_flag",
-		"value":"5",
-		"type":"IntegerAbsolute"
-	},
-	{
-		"key": "third_flag",
-		"value":"-3",
-		"type":"IntegerRelative"
-	},
-	{
-		"key": "another_flag",
-		"value":"8",
-		"type":"IntegerRelative"
-	}
-]
-```
+## <a name="fieldChange">Field Changes</a>
+|Field|Data type|Description
+|-|-|-|
+|booleanFields|List<[Boolean Field](#booleanFieldModel)>| List of intended boolean field changes
+|integerFields|List<[Integer Field](#integerFieldModel)>| List of intended integer field changes
+
+## <a name="booleanFieldChange">Boolean Field Change</a>
+|Field|Data type|Description
+|-|-|-|
+|type|String| the type of the change operation. Currently only "Set".
+|key|String| the key of the boolean field to change
+|value|boolean| the value of the change.
+
+## <a name="integerFieldModel">Integer Field Change</a>
+|Field|Data type|Description
+|-|-|-|
+|type|String| the type of the integer change operation. One of <Absolute, Relative>
+|key|String| the key of the integer field, e.g. "Adult"
+|value|int| the value of the field
 
 ## <a name="paymentType">PaymentType</a>
 |Field|Data type|Description
