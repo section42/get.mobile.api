@@ -772,8 +772,8 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |Field|Data type|Description
 |-|-|-|
 |count|int| the quantity of the item
-|productKey|String| UUID of product
-|variantKey|String| Key for variant of a specific product
+|productKey|String| UUID of product, found in [MenuProduct](#menuProduct).productKey
+|variantKey|String| Key for variant of a specific product, found in [MenuProduct](#menuProduct).variant
 |singlePrice|String| the price in credits of one unit of this item, can be retrieved via the product endpoint
 
 ## <a name="jobInfo">JobInfo</a>
