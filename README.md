@@ -41,6 +41,9 @@
 
 ## <a name="changeLog">Change Log</a>
 
+### Device version 52.1
+CartItems no longer require a menuItemId, but the ProductKey for purchases
+
 ### Device version 49.49
 Changes to fields have been made to allow clients to access the easier. For the [fields](#fieldsEndpoint) endpoint, the response model was updated to group fields by their data type. 
 
@@ -646,13 +649,14 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |Field|Data type|Description
 |-|-|-|
 |id|String| guid of this menu node
+|productKey|String| guid for purchase calls
+|variant|String| Key for identifying the correct variant of a specific product
 |type|String| The node type, one of <Product, CustomValueProduct, Other>
 |name|String|The name of the product, e.g. "Soda"
 |priceInCredits|String|The price of a product in system credits. Always formatted with a decimal point, e.g. "3.2"
 |priceInCreditsFormatted|String|The price of a product in system credits with the credit symbol. For displaying the credit value. Decimal separator may be location dependent, e.g. "3,20T"
 |priceInCurrency|String|The price of a product in real world currency. Always formatted with a decimal point, e.g. "6.4"
 |priceInCurrencyFormatted|String|the price of a product in real world currency with the currency symbol. For displaying the currency value. Decimal separator may be location dependent, e.g. "6,40€"
-|genericData|List\<[Generic](#generic)>|List of generic functions associated with this menu node
 
 ## <a name="imageRef">ImageRef</a>
 |Field|Data type|Description
@@ -768,7 +772,8 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |Field|Data type|Description
 |-|-|-|
 |count|int| the quantity of the item
-|menuItemId|String| the uuid of the specific item, can be retrieved via the menu endpoint
+|productKey|String| UUID of product
+|variantKey|String| Key for variant of a specific product
 |singlePrice|String| the price in credits of one unit of this item, can be retrieved via the product endpoint
 
 ## <a name="jobInfo">JobInfo</a>
