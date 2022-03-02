@@ -432,12 +432,12 @@ Example:
 	"cartItems":[
 		{
 			"count":1,
-			"menuItemId": "3cfed0c0-2658-4a4f-9bcd-bb43f3f1535a",
+			"productKey": "3cfed0c0-2658-4a4f-9bcd-bb43f3f1535a",
 			"singlePrice": "2.1"
 		},
 		{
 			"count":5,
-			"menuItemId": "123ed0c0-2658-4a4f-9bcd-bb43f3f1535a",
+			"productKey": "123ed0c0-2658-4a4f-9bcd-bb43f3f1535a",
 			"singlePrice": "8"
 		}
 	]
