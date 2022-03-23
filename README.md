@@ -1,6 +1,6 @@
 
 
-# GET mobile API v4
+# GET mobile API v4 - BETA
 
 ## Index
 1. [Change Log](#changeLog)
