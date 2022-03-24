@@ -775,7 +775,7 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |-|-|-|
 |count|int| the quantity of the item
 |productKey|String| Key of the product, found in [MenuProduct](#menuProduct).productKey
-|variantKey|String| Key for the variant of a specific product, found in [MenuProduct](#menuProduct).variantKey
+|variantKey|String| Key for the variant of a specific product, found in [MenuProduct](#menuProduct).variantKey, send empty value "" to load default variant
 |singlePrice|String| the price in credits of one unit of this item, can be retrieved via the product endpoint
 
 ## <a name="jobInfo">JobInfo</a>
