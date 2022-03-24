@@ -432,12 +432,14 @@ Example:
 	"cartItems":[
 		{
 			"count":1,
-			"productKey": "3cfed0c0-2658-4a4f-9bcd-bb43f3f1535a",
+			"productKey": "key-of-the-product",
+			"variantKey": "variant-key-of-the-product",
 			"singlePrice": "2.1"
 		},
 		{
 			"count":5,
-			"productKey": "123ed0c0-2658-4a4f-9bcd-bb43f3f1535a",
+			"productKey": "key-of-the-product-2",
+			"variantKey": "variant-key-of-the-product-2",
 			"singlePrice": "8"
 		}
 	]
