@@ -421,7 +421,7 @@ Request:
 |Field|Data type|Description|
 |-|-|-|
 |paymentType|String| the uuid of the payment type to use, can be found via the status endpoint
-|cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer
+|cartItems|List\<[CartItem](#cartItem)>| the items which are to be sold to a customer, sending an empty variantKey will load the default variant
 |requiredChip|String|Optional. If provided, only the chip with the defined Id can be used
 
 Example:
@@ -652,7 +652,7 @@ The Api does not attempt to retry the update request on a failed connection, or 
 |-|-|-|
 |id|String| guid of this menu node
 |productKey|String| guid for purchase calls
-|variant|String| Key for identifying the correct variant of a specific product
+|variantKey|String| Key for identifying the correct variant of a specific product
 |type|String| The node type, one of <Product, CustomValueProduct, Other>
 |name|String|The name of the product, e.g. "Soda"
 |priceInCredits|String|The price of a product in system credits. Always formatted with a decimal point, e.g. "3.2"
