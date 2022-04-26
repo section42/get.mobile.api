@@ -1,6 +1,7 @@
 
 
 # GET mobile API v4 - BETA
+## Currently Accreditation is NOT supported! 
 
 ## Index
 1. [Change Log](#changeLog)
